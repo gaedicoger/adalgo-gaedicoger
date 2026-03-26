@@ -14,6 +14,7 @@ export const inclusify = (text) => {
   text = text.replace(/\bil\b|\belle\b/g, "iel"); // \b pour isoler les mots et éviter de prendre un il dans un mot
   text = text.replace(/\bIls\b|\bElles\b/g, "Iels"); //g pour regarder toute la string et pas juste la première occurence
   text = text.replace(/\bils\b|\belles\b/g, "iels");
+  text = text.replace(/\bcelles\b|\bceux\b/g, "celleux");
 
   return text;
 };

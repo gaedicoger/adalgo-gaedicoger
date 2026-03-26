@@ -24,5 +24,12 @@ test("already inclusified sentences should change", () => {
   );
   expect(inclusify("Iel a bu un café")).toBe("Iel a bu un café");
 });
-
-// TODO: write similar tests celleux
+// TODO: write similar tests celleux:
+test("Ceux /celle est remplacé par celleux", () => {
+  expect(
+    inclusify("Aujourd'hui ceux qui ont terminé, push le code sur github"),
+  ).toBe("Aujourd'hui celleux qui ont terminé, push le code sur github");
+  expect(
+    inclusify("Aujourd'hui celles qui ont terminé, push le code sur github"),
+  ).toBe("Aujourd'hui celleux qui ont terminé, push le code sur github");
+});

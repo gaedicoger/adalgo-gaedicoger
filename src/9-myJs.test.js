@@ -1,5 +1,13 @@
 import { suite, test, expect } from "vitest";
-import { myIncludes, myJoin, myObjectKeys, myObjectEntries } from "./9-myJs";
+import {
+  myIncludes,
+  myJoin,
+  myObjectKeys,
+  myObjectEntries,
+  myIndexOf,
+  myStartsWith,
+  myRepeat,
+} from "./9-myJs";
 
 suite("myJs", () => {
   test("myIncludes", () => {
@@ -11,8 +19,21 @@ suite("myJs", () => {
   });
 
   // TODO: test myIndexOf
+  test("myIndexOf", () => {
+    expect(myIndexOf(["un", "deux", "trois", "quatre"], "trois")).toBe(2);
+    expect(myIndexOf(["un", "deux", "trois", "quatre"], "cinq")).toBe(-1);
+  });
   // TODO: test myStartsWith
+  test("myStartsWith", () => {
+    expect(myStartsWith("bonjour", "bon")).toBe(true);
+    expect(myStartsWith("Shalut", "Sal")).toBe(false);
+  });
+
   // TODO: test myRepeat
+  test("myRepeat", () => {
+    expect(myRepeat("Yeah", 2)).toBe("YeahYeah");
+    expect(myRepeat("Ha", 5)).toBe("HaHaHaHaHa");
+  });
 
   test("myJoin", () => {
     expect(myJoin(["a", "b", "c"], "-")).toBe("a-b-c");

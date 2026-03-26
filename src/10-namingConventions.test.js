@@ -1,8 +1,14 @@
 import { expect, test } from "vitest";
 // @ts-ignore
-import { toCamelCase, toSnakeCase } from "./2-namingConventions";
+import { toCamelCase, toSnakeCase } from "./10-namingConventions";
 
-// TODO: test camelcase with one word, with multiple words and when the input is already camelcase
+// TODO: test camelcase with one word, with multiple words and when the input is already camelcase:
+test("Some simple cases for the toCamelCase function", () => {
+  expect(toCamelCase("test")).toBe("test");
+  expect(toCamelCase("to_camel_case")).toBe("toCamelCase");
+  expect(toCamelCase("my_function")).toBe("myFunction");
+  expect(toCamelCase("anotherFunction")).toBe("anotherFunction");
+});
 
 test("Some simple cases for the toSnakeCase function", () => {
   expect(toSnakeCase("test")).toBe("test");

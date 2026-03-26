@@ -17,4 +17,15 @@
  This: passwd_validator("fwjifewJ#")
  Will return: False (because there's no decimal numbers) */
 
-export const passwd_validator = () => {};
+import { stringify } from "vitest/internal/browser";
+
+export const passwd_validator = (str) => {
+  //si password est compris entre 6 et 12 caractère
+  if (str.length < 6 || str.length > 12) return false;
+  if (!str.match(/[a-z]/)) return false;
+  if (!str.match(/[A-Z]/)) return false;
+  if (!str.match(/\d/)) return false;
+  if (!str.match(/[$#@]/)) return false;
+
+  return true;
+};

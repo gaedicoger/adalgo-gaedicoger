@@ -7,7 +7,15 @@
  * @param {{name: string; price: number}[]} gifts
  * @returns {number} total price
  */
-export const totalPrice = (gifts) => {};
+export const totalPrice = (gifts) => {
+  let total = 0; //Déclarer une variable pour stocker le total des cadeaux
+  for (const gift of gifts) {
+    //Faire une boucle pour itérer sur chaque cadeau et ajouter le prix à la variable
+    total += gift.price;
+  }
+  //retourner la variable total.
+  return total;
+};
 
 /**
  * This function takes an array of gifts and returns the name of the most expensive one.
@@ -15,7 +23,21 @@ export const totalPrice = (gifts) => {};
  * @param {{name: string; price: number}[]} gifts
  * @returns {string} gift's name
  */
-export const mostExpensive = (gifts) => {};
+export const mostExpensive = (gifts) => {
+  //stocker le prix le plus cher
+  let maxPrice = 0;
+  //stocker le nom du cadeau le plus cher
+  let mostExpensiveGift = "";
+
+  //Boucler sur chaque cadeau
+  for (const gift of gifts) {
+    if (gift.price > maxPrice) {
+      maxPrice = gift.price;
+      mostExpensiveGift = gift.name;
+    }
+  }
+  return mostExpensiveGift;
+};
 
 /**
  * This function takes an array of kids and returns the name of the most expensive gift
@@ -33,7 +55,23 @@ export const mostExpensive = (gifts) => {};
  * @param {{name: string; gifts: {name: string; price: number}[]}[]} kids
  * @returns {string} gift's name
  */
-export const globalMostExpensive = (kids) => {};
+export const globalMostExpensive = (kids) => {
+  //stocker le prix le plus cher
+  let maxPrice = 0;
+  //stocker le nom du cadeau le plus cher
+  let mostExpensiveGift = "";
+
+  //Boucler sur chaque enfants:
+  for (const kid of kids) {
+    for (const gift of kid.gifts) {
+      if (gift.price > maxPrice) {
+        maxPrice = gift.price;
+        mostExpensiveGift = gift.name;
+      }
+    }
+  }
+  return mostExpensiveGift;
+};
 
 /**
  * This function takes an array of kids and return the name of the kid that has
@@ -54,7 +92,27 @@ export const globalMostExpensive = (kids) => {};
  * @param {{name: string; gifts: {name: string; price: number}[]}[]} kids
  * @returns {string} kid's name
  */
-export const preferedKid = (kids) => {};
+export const preferedKid = (kids) => {
+  //stocker le total le plus élevé :
+  let maxTotal = 0;
+  //stocker le nom du cadeau le plus cher
+  let preferedKidName = "";
+  if (kids.length === 0) {
+    return undefined;
+  }
+  //Boucler sur chaque enfants:
+  for (const kid of kids) {
+    let kidTotal = 0; //stocker le total des cadeaux pour chaque enfant et le remettre à zéro à chaque boucle
+    for (const gift of kid.gifts) {
+      kidTotal += gift.price;
+      if (kidTotal > maxTotal) {
+        maxTotal = kidTotal;
+        preferedKidName = kid.name;
+      }
+    }
+  }
+  return preferedKidName;
+};
 
 /**
  * Distributes a list of gifts among a list of kids.
@@ -142,4 +200,40 @@ export const preferedKid = (kids) => {};
  *
  * // gifts is now []
  */
-export const distributeGifts = (gifts, kids) => {};
+export const distributeGifts = (gifts, kids) => {
+  gifts.sort((a, b) => b.price - a.price); //trier les cadeaux par ordre décroissant
+
+  if (gifts.length === 0 || kids.length === 0) {
+    //Si pas de cadeaux ou pas d'enfant on ne fait rien.
+    return kids;
+  }
+
+  while (gifts.length > 0) {
+    //On boucle tant qu'il y a des cadeaux dans le tableau gifts
+    const gift = gifts[0]; //On prend le premier cadeau (le plus cher comme on a trier au départ)
+    let bestKid = null; // le meilleur enfant trouvé jusqu'ici on met null car on va stocker un objet.
+    let lowestTotal = Infinity; // le total le plus bas trouvé// on met un nombre infini plus grand pour pouvoir toutjours récupérer le plus petit présent dans un tableau ou si un enfant n'a pas de cadeaux.
+
+    for (const kid of kids) {
+      //Boucle sur chaque enfant
+      let kidTotal = 0; //On met à zéro le total de cadeau de l'enfant
+      for (const kidGift of kid.gifts) {
+        //Boucle sur chaque cadeau de l'enfant
+        kidTotal += kidGift.price; //pour mettre son total à jour en poussant le prix de son cadeaud dans kidTotal
+      }
+      if (kidTotal < lowestTotal) {
+        //Si le total de l'enfant et inférieur au total le +bas
+        lowestTotal = kidTotal; // on met à jour le total le + bas avec le total de l'enfant
+        bestKid = kid; // on stocke l'enfant gagnant
+      } else if (
+        kidTotal === lowestTotal &&
+        kid.behaviorScore > bestKid.behaviorScore
+      ) {
+        //sinon si le total de l'enfant et strictement égal au total le plus bas, et que son comportement est supérieur au comportement du meilleur enfant
+        bestKid = kid; // alors cet enfant devient prio
+      }
+    }
+    bestKid.gifts.push(gift);
+    gifts.splice(0, 1);
+  }
+};

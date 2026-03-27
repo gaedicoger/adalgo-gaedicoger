@@ -30,4 +30,45 @@
  { letters: 0, words: 0, sentences: 0 }
 */
 
-export const analyze_text = () => {};
+// @ts-ignore
+export const analyze_text = (str) => {
+  //Déclarer les trois compteurs à incrémenter :
+  let nbLetters = 0;
+  let nbWords = 0;
+  let nbSentences = 0;
+
+  //passer la string: pour chaque caractères :
+
+  for (let i = 0; i < str.length; i++) {
+    // str[i] = le caractère actuel
+    if (str[i] >= "a" && str[i] <= "z") {
+      //Compter le nombre de lettre minuscules
+      nbLetters++;
+    }
+    if (str[i] >= "A" && str[i] <= "Z") {
+      //compter le nombre de lettre majuscules
+      nbLetters++;
+    }
+    if (
+      (str[i] === " " && str[i + 1] >= "a" && str[i + 1] <= "z") ||
+      (str[i + 1] >= "A" && str[i + 1] <= "Z")
+    ) {
+      // Compter le nombre d'espace +1
+      nbWords++;
+    }
+    if (str[i] === "!" || str[i] === "?" || str[i] === ".") {
+      // +compter le nombre de caractères spéciaux: . ? ou !
+      nbSentences++;
+    }
+  }
+  if (str.length > 0) {
+    //Si un seul mot sans espace je compte une fois.
+    nbWords++;
+  }
+
+  return {
+    letters: nbLetters,
+    words: nbWords,
+    sentences: nbSentences,
+  };
+};

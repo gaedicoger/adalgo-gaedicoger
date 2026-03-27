@@ -19,6 +19,7 @@
 
 import { stringify } from "vitest/internal/browser";
 
+// @ts-ignore
 export const passwd_validator = (str) => {
   //si password est compris entre 6 et 12 caractère
   if (str.length < 6 || str.length > 12) return false;

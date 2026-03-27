@@ -140,6 +140,7 @@ export const myObjectKeys = (obj) => {
 export const myObjectEntries = (obj) => {
   let resultArray = [];
   for (let key in obj) {
+    // @ts-ignore
     resultArray.push([key, obj[key]]); //récupérer clés plus valeur
   }
   //sans méthode push on peut demander à JS de créer une nouvelle case comme ça : resultArray[resultArray.length] = [key, obj[key]];

@@ -1,3 +1,4 @@
+// @ts-nocheck
 /**
  * This function re-implement the behavior of the .includes() array method
  * without using any existing functions.

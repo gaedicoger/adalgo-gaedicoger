@@ -26,3 +26,5 @@ export const chocolatine = (message) => {
 
   return message;
 };
+
+//ici j'aurais pu raccourcir le code en utilisant uniquement la méthode replace.

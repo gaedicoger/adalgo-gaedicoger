@@ -13,6 +13,7 @@
  */
 export const myIncludes = (array, searchElement) => {
   for (let element = 0; element < array.length; element++) {
+    // pour chaque element, tant que element est plus petit que la longueur du tableau, on itère
     if (array[element] === searchElement) {
       return true;
     }

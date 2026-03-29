@@ -211,10 +211,14 @@ export const distributeGifts = (gifts, kids) => {
   }
 
   while (gifts.length > 0) {
-    //On boucle tant qu'il y a des cadeaux dans le tableau gifts
-    const gift = gifts[0]; //On prend le premier cadeau (le plus cher comme on a trier au départ)
+    //On boucle tant qu'il y a des cadeaux dans le tableau gifts -- 1er essai: la boucle for of "copie" le tableau pour le parcourir,
+    //alors que while ré-évalue si la condition est vrai à chaque passage,
+    //comme on modifie notre tableau à chaque passage c'est plus approprié
+    const gift = gifts[0]; //On prend le premier cadeau (le plus cher comme on a trié au départ)
     let bestKid = null; // le meilleur enfant trouvé jusqu'ici on met null car on va stocker un objet.
-    let lowestTotal = Infinity; // le total le plus bas trouvé// on met un nombre infini plus grand pour pouvoir toutjours récupérer le plus petit présent dans un tableau ou si un enfant n'a pas de cadeaux.
+    let lowestTotal = Infinity; // le total le plus bas trouvé
+    // on met un nombre infini plus grand pour pouvoir toujours récupérer le plus petit nombre présent
+    // dans un tableau ou si un enfant n'a pas de cadeaux.
 
     for (const kid of kids) {
       //Boucle sur chaque enfant

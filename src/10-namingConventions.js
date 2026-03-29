@@ -11,7 +11,8 @@ export const toCamelCase = (str) => {
     //Si la string ne renvoie pas d'underscore
     return str; // déjà en camelCase, on retourne tel quel
   }
-  const words = str.toLowerCase().split("_"); //méthode split découpe la string dans un nouveau tableau en fonction du séparateur
+  const words = str.toLowerCase().split("_"); //Stocker la string en minuscule et //
+  // méthode split découpe la string dans un nouveau tableau en fonction du séparateur
 
   const first = words.shift(); //garde le premier élément du tableau words
   let result = first;
@@ -33,9 +34,9 @@ export const toCamelCase = (str) => {
 export const toSnakeCase = (str) => {
   //Ajouter un separateur underscore devant chaque majuscule
   const underString = str.replace(/[A-Z]/g, (lettre) => {
-    return "_" + lettre; // !Je gardes la lettre ET tu ajoutes le _ devant
+    return "_" + lettre; // !Je garde la lettre ET j'ajoute le _ devant
   });
   //Mettre toutes les majuscules en minuscule
-  const result = underString.toLocaleLowerCase();
-  return result; //retrouner la string
+  const result = underString.toLowerCase();
+  return result; //retourner la string
 };

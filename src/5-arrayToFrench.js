@@ -10,10 +10,11 @@
  *      arrayToFrench(['noir', 'blanc']); // returns "noir et blanc"
  */
 export const arrayToFrench = (array) => {
-  const firstWords = array.slice(0, -1);
-  const lastWord = array.slice(-1);
+  const firstWords = array.slice(0, -1); // Stocke les premiers mots
+  const lastWord = array.slice(-1); //stocke le dernier mot
   if (array.length >= 3) {
-    return `${firstWords.join(", ")} et ${lastWord[0]}`;
+    //si le tableau est supérieur ou égale à 3
+    return `${firstWords.join(", ")} et ${lastWord[0]}`; //J'applique une méthode join pour les deux premiers et on ajoute le dernier
   }
   if (array.length === 2) {
     return `${firstWords[0]} et ${lastWord[0]}`;

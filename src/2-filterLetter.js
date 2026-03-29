@@ -24,6 +24,8 @@ filterLetter("8", callback1, callback2)
 // @ts-ignore
 export const filterLetter = (arg, call, call2) => {
   if (isNaN(arg)) {
+    // Au début j'ai essayé avec des match mais j'ai gardé plutôt vérifié que ce n'est pas un nombre
+    //J'ai eu du mal à piger les callback autour de la lettre dans les tests.
     return call(arg);
   } else {
     return call2(arg);

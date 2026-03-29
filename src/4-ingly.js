@@ -20,17 +20,20 @@ ingly("swim") => return "swiming"
 
 // @ts-ignore
 export const ingly = (word) => {
-  const isUpperCase = word.length > 0 && word === word.toUpperCase();
+  const isUpperCase = word.length > 0 && word === word.toUpperCase(); // Si les conditions sont remplies ça renvoie true sinon false
 
   if (word.match(/ing$/i)) {
+    //Si mon mot est fini par ing quelque soit la casse
     //méthode match avec la string comprise entre flash, $ signigie fin du mot ça évite que ça prenne ing n'importe où dans le mot et le i "flag insensible à la casse"
     if (isUpperCase) {
+      //S'il est en majuscule : j'ajoute LY en majuscule
       return `${word}LY`;
     } else {
       return `${word}ly`;
     }
   } else {
     if (isUpperCase) {
+      //Sinon on ajouter ING en majuscule ou non
       return `${word}ING`;
     } else {
       return `${word}ing`;
